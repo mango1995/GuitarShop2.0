@@ -4,12 +4,11 @@
 function search(){
 	var builder=$("#builder").val();
 	var type=$("#type").val();
-	var backWood=$("#backWood").val();
-	var topWood=$("#topWood").val();
-	var numStrings=$("#numStrings").val();
 	var model=$("#model").val();
-	alert(numStrings);
-	$.getJSON("../search",{Builder:builder,Type:type,BackWood:backWood,TopWood:topWood,numStrings:numStrings,Model:model}, function(json) {
+	var numStrings=$("#numStrings").val();
+	var topWood=$("#topWood").val();
+	var backWood=$("#backWood").val();
+	$.getJSON("../search",{Builder:builder,Type:type,Model:model,numStrings:numStrings,TopWood:topWood,BackWood:backWood}, function(json) {
 		var html="";
 			for(var i=0;i<json.length;i++){
 				html+="<tr><td>"+json[i].serialNumber+"</td><td>"+json[i].builder+"</td><td>"+json[i].model+"</td><td>"+json[i].type+"</td>";
