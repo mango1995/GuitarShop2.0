@@ -43,36 +43,35 @@ public class search extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
-		System.out.println("2");
+		System.out.println("å·²åˆ°search.java");
 		PrintWriter out = response.getWriter();
 		JSONArray ja = new JSONArray();
 
-		//³õÊ¼»¯¿â´æ	
+		//åˆå§‹åŒ–åº“å­˜	
 		initializeInventory();
 
-		// ³õÊ¼»¯ÓÃ»§²éÑ¯µÄGuitarSpec
-	/*	Builder builder = Builder.valueOf(request.getParameter("Builder").toUpperCase());
+		Builder builder = Builder.valueOf(request.getParameter("Builder").toUpperCase());
 		Type type = Type.valueOf(request.getParameter("Type").toUpperCase());
 		Wood backWood = Wood.valueOf(request.getParameter("BackWood").toUpperCase());
 		Wood topWood = Wood.valueOf(request.getParameter("TopWood").toUpperCase());
 		int numStrings = Integer.parseInt(request.getParameter("numStrings"));
-		String model = request.getParameter("Model");*/
-		Builder builder = Builder.valueOf("FENDER");
+		String model = request.getParameter("Model");
+		/*Builder builder = Builder.valueOf("FENDER");
 		Type type = Type.valueOf("ACOUSTIC");
 		Wood backWood = Wood.valueOf("ALDER");
 		Wood topWood = Wood.valueOf("ALDER");
 		int numStrings = 6;
-		String model = "CJ";
+		String model = "CJ";*/
 		GuitarSpec userSpec = new GuitarSpec(builder, model, type, numStrings, backWood, topWood);
 
-		// ²éÑ¯Æ¥Åä
+		// æŸ¥è¯¢åŒ¹é…
 		List<Guitar> Guitars = Inventory.search(userSpec);
 
 		if (!Guitars.isEmpty()) {
 			for (Iterator<Guitar> i = Guitars.iterator(); i.hasNext();) {
 				Guitar guitar = (Guitar) i.next();
 				GuitarSpec spec = guitar.getSpec();
-				// Ğ´Èëjson
+				// å†™å…¥json
 				JSONObject jo = new JSONObject();
 				jo.put("serialNumber", guitar.getSerialNumber());
 				jo.put("price", guitar.getPrice());
@@ -90,7 +89,7 @@ public class search extends HttpServlet {
 	}
 
 	private static void initializeInventory(){
-	//ÃæÏò½Ó¿Ú£º
+	//é¢å‘æ¥å£ï¼š
 		InventoryIDao inventorydao = new InventoryImpl();
 		
 	try {
